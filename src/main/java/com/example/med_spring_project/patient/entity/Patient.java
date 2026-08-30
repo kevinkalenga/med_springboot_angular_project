@@ -1,6 +1,7 @@
 package com.example.med_spring_project.patient.entity;
 
 
+import com.example.med_spring_project.appointment.entity.Appointment;
 import com.example.med_spring_project.enums.BloodGroup;
 import com.example.med_spring_project.enums.Genotype;
 import com.example.med_spring_project.users.entity.User;
@@ -11,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "patients")

@@ -1,6 +1,7 @@
 package com.example.med_spring_project.appointment.entity;
 
 
+import com.example.med_spring_project.consultation.entity.Consultation;
 import com.example.med_spring_project.doctor.entity.Doctor;
 import com.example.med_spring_project.enums.AppointmentStatus;
 import com.example.med_spring_project.enums.Specialization;
