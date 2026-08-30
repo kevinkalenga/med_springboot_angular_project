@@ -1,6 +1,7 @@
 package com.example.med_spring_project.doctor.entity;
 
 
+import com.example.med_spring_project.appointment.entity.Appointment;
 import com.example.med_spring_project.enums.Specialization;
 import com.example.med_spring_project.users.entity.User;
 import jakarta.persistence.*;
@@ -8,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")

@@ -18,6 +18,12 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Long> {
     //fetch appointment of the patient
     List<Appointment> findByPatient_User_IdOrderByIdDesc(Long userId);
 
+    /*
+     * Cette requête permet de rechercher les rendez-vous déjà planifiés
+     * pour un médecin et qui chevauchent le créneau du nouveau rendez-vous.
+     *
+     * Elle retourne une liste de rendez-vous en conflit avec le nouveau créneau.
+     */
     @Query("SELECT a FROM Appointment a " +
             "WHERE a.doctor.id = :doctorId " + "AND a.status = 'SCHEDULED' " + //Only check for scheduled:confirmed appointments
           "AND (" +
