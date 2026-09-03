@@ -72,7 +72,7 @@ public class AuthFilter extends OncePerRequestFilter {
             authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
-        
+
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {
