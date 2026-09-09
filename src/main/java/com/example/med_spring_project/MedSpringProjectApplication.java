@@ -15,22 +15,22 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @RequiredArgsConstructor
 public class MedSpringProjectApplication {
 
-	private final NotificationService notificationService;
+	//private final NotificationService notificationService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MedSpringProjectApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner(){
-		return args -> {
-			NotificationDTO notificationDTO = NotificationDTO.builder()
-					.recipient("kevinkalenga10@gmail.com")
-					.subject("Testing Email")
-					.message("Hey, this is a test mail")
-					.build();
-			notificationService.sendEmail(notificationDTO, new User());
-		};
-	}
+	//@Bean
+	//CommandLineRunner runner(){
+		//return args -> {
+			//NotificationDTO notificationDTO = NotificationDTO.builder()
+					//.recipient("kevinkalenga10@gmail.com")
+					//.subject("Testing Email")
+					//.message("Hey, this is a test mail")
+					//.build();
+			//notificationService.sendEmail(notificationDTO, new User());
+		//};
+	//}
 
 }
