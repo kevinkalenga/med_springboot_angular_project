@@ -1,9 +1,12 @@
 package com.example.med_spring_project.users.service;
 
+import com.example.med_spring_project.doctor.entity.Doctor;
 import com.example.med_spring_project.doctor.repo.DoctorRepo;
 import com.example.med_spring_project.exception.BadRequestException;
 import com.example.med_spring_project.exception.NotFoundException;
+import com.example.med_spring_project.notification.dto.NotificationDTO;
 import com.example.med_spring_project.notification.service.NotificationService;
+import com.example.med_spring_project.patient.entity.Patient;
 import com.example.med_spring_project.patient.repo.PatientRepo;
 import com.example.med_spring_project.res.Response;
 import com.example.med_spring_project.role.entity.Role;
@@ -22,6 +25,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -136,4 +140,38 @@ public class AuthServiceImpl implements AuthService{
     public Response<?> updatePasswordViaResetCode(ResetPasswordRequest resetPasswordRequest) {
         return null;
     }
+
+    private void creationPatientProfile(User user){
+        Patient patient = Patient.builder()
+                .user(user)
+                .build();
+        patientRepo.save(patient);
+        log.info("Patient profile created");
+    }
+
+    private void creationDoctorProfile(RegistrationRequest request, User user){
+        Doctor doctor = Doctor.builder()
+                .specialization(request.getSpecialization())
+                .licenseNumber(request.getLicenseNumber())
+                .user(user)
+                .build();
+        doctorRepo.save(doctor);
+        log.info("Doctor profile created");
+    }
+
+    private void sendRegistrationEmail(RegistrationRequest request, User user){
+        NotificationDTO welcomeEmail = NotificationDTO.builder()
+                .recipient(user.getEmail())
+                .subject("Welcome to DAT Health!")
+                .templateName("welcome")
+                .message("Thank you for registering your account is ready.")
+                .templateVariables(Map.of(
+                       "name", request.getName(),
+                        "loginLink", loginLink
+                ))
+                .build();
+        notificationService.sendEmail(welcomeEmail, user);
+    }
+
+
 }
